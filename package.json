@@ -1,0 +1,33 @@
+{
+  "name": "react-todo-list",
+  "version": "1.0.0",
+  "description": "react todoList demo with hooks typescript jest enzyme eslint balabala...",
+  "main": "./src/index.tsx",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hangyangws/react-todo-list.git"
+  },
+  "keywords": [
+    "react",
+    "hooks",
+    "test",
+    "demo",
+    "todolist",
+    "babel",
+    "enzyme",
+    "jest",
+    "eslint",
+    "lint",
+    "webpack",
+    "friday.fj"
+  ],
+  "author": "friday.fj",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hangyangws/react-todo-list/issues"
+  },
+  "homepage": "https://github.com/hangyangws/react-todo-list#readme"
+}
