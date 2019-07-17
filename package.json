@@ -2,9 +2,10 @@
   "name": "react-todo-list",
   "version": "1.0.0",
   "description": "react todoList demo with hooks typescript jest enzyme eslint balabala...",
-  "main": "./src/index.tsx",
+  "main": "./src/index.jsx",
   "scripts": {
-    "test": "jest"
+    "start": "webpack-dev-server --open",
+    "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
     "todolist",
     "babel",
     "enzyme",
+    "prettier",
     "jest",
     "eslint",
     "lint",
@@ -30,5 +32,29 @@
   "bugs": {
     "url": "https://github.com/hangyangws/react-todo-list/issues"
   },
-  "homepage": "https://github.com/hangyangws/react-todo-list#readme"
+  "homepage": "https://github.com/hangyangws/react-todo-list#readme",
+  "dependencies": {
+    "core-js": "^3.1.4",
+    "history": "^4.9.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.0.0",
+    "file-loader": "^4.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.12.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "sass-loader": "^7.1.0",
+    "uglifyjs-webpack-plugin": "^2.1.3",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2"
+  }
 }
