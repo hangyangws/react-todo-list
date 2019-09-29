@@ -1,0 +1,13 @@
+package-lock.json
+package.json
+.next
+node_modules/
+build/
+mock-server/
+
+**/*-min.js
+**/*.min.js
+**/*.test.js
+**/*.test.jsx
+**/*.test.ts
+**/*.test.tsx

@@ -1,0 +1,25 @@
+.layout {
+  &-header {
+    font-weight: 500;
+    font-size: 20px;
+    align-items: center;
+    margin: 3rem 0;
+    display: flex;
+    line-height: 20px;
+    justify-content: center;
+    color: #e25333;
+  }
+
+  &-logo {
+    height: 20px;
+    width: 20px;
+    margin-right: .5rem;
+  }
+
+  &-main {
+    width: 80%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

@@ -1,31 +1,65 @@
 const path = require('path');
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const buildPath = 'build';
 
 module.exports = {
-  entry: path.resolve(__dirname, "src/index.jsx"),
+  entry: path.resolve(__dirname, 'src/index.tsx'),
   output: {
     path: path.resolve(__dirname, buildPath),
-    filename: "index.js"
+    filename: 'index.js'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(c|sc|sa)ss$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: process.env.NODE_ENV === 'development'
+            }
+          },
+          'css-loader',
+          'sass-loader'
+        ]
+      },
+      {
+        test: /\.(js|ts)x?$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader'
+        }
+      },
+      {
+        test: /\.(png|jpg|eot|gif|woff|woff2|svg|ttf)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {}
+          }
+        ]
+      }
+    ]
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: "index.css"
-    }),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, "public/index.html"),
-      title: "hello world",
-      filename: "index.html"
+      template: path.join(__dirname, 'public/index.html'),
+      title: 'excel uploader',
+      filename: 'index.html',
+      favicon: path.join(__dirname, 'public/favicon.ico')
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'index.css'
     }),
     new OptimizeCSSAssetsPlugin({
       assetNameRegExp: /index\.css$/g,
-      cssProcessor: require("cssnano"),
+      cssProcessor: require('cssnano'),
       cssProcessorPluginOptions: {
-        preset: ["default", { discardComments: { removeAll: true } }]
+        preset: ['default', { discardComments: { removeAll: true } }]
       },
       canPrint: true
     }),
@@ -43,46 +77,16 @@ module.exports = {
       }
     })
   ],
-  module: {
-    rules: [
-      {
-        test: /\.(c|sc|sa)ss$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              hmr: process.env.NODE_ENV === "development"
-            }
-          },
-          "css-loader",
-          "sass-loader"
-        ]
-      },
-      {
-        test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: "babel-loader"
-        }
-      },
-      {
-        test: /\.(png|jpg|gif|woff|svg|ttf)$/,
-        use: [
-          {
-            loader: "file-loader"
-          }
-        ]
-      }
-    ]
-  },
   resolve: {
-    extensions: [".js", ".jsx", ".json"],
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     alias: {
-      "@components": path.resolve(__dirname, "src/components/"),
-      "@config": path.resolve(__dirname, "src/config/"),
-      "@pages": path.resolve(__dirname, "src/pages/"),
-      "@resource": path.resolve(__dirname, "src/resource/"),
-      "@utils": path.resolve(__dirname, "src/utils/")
+      '@api': path.resolve(__dirname, 'src/api/'),
+      '@components': path.resolve(__dirname, 'src/components/'),
+      '@config': path.resolve(__dirname, 'src/config/'),
+      '@pages': path.resolve(__dirname, 'src/pages/'),
+      '@resource': path.resolve(__dirname, 'src/resource/'),
+      '@store': path.resolve(__dirname, 'src/store/'),
+      '@utils': path.resolve(__dirname, 'src/utils/')
     }
   },
   devServer: {
@@ -90,5 +94,5 @@ module.exports = {
     compress: true,
     port: 9000
   },
-  mode: "development"
+  mode: 'development'
 };
