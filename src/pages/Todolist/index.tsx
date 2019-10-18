@@ -12,18 +12,9 @@ const List = () => {
   React.useEffect(() => {
     dispatch({
       type: 'TODOLIST_INIT',
-      payload: [
-        {
-          id: 1,
-          text: '有是美好的一天',
-          createTime: 1564392621791
-        },
-        {
-          id: 2,
-          text: '吃早饭',
-          createTime: 1561219200000
-        }
-      ]
+      api: {
+        url: '/todolist'
+      }
     });
 
     return () => {
@@ -36,6 +27,10 @@ const List = () => {
   const handleDelete = (todo: any) => () => {
     dispatch({
       type: 'TODOLIST_DELETE',
+      api: {
+        method: 'delete',
+        url: '/todolist'
+      },
       payload: todo
     });
   };
@@ -48,6 +43,10 @@ const List = () => {
     if (newTodo) {
       await dispatch({
         type: 'TODOLIST_ADD',
+        api: {
+          method: 'post',
+          url: '/todolist'
+        },
         payload: {
           id: new Date().getTime(),
           createTime: new Date().getTime(),

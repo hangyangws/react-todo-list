@@ -7,7 +7,7 @@
     "start-server": "nodemon --watch ./__mocks__/server ./__mocks__/server/index.js",
     "start": "webpack-dev-server --open",
     "build": "webpack --config webpack.config.js",
-    "lint": "eslint ./src --ext '.js,.jsx,ts,tsx'",
+    "lint": "eslint ./src --ext '.js,.jsx,ts,tsx' --fix",
     "test": "jest"
   },
   "repository": {
