@@ -1,18 +1,29 @@
 import React from 'react';
 
-import { useStore, useDispatch } from '@store/index';
-import { ITodo, ITodoList } from '@store/types';
+import { useDispatch, useStore } from '../../hooks-store';
 
 import './index.scss';
 
 const List = () => {
   const dispatch = useDispatch();
-  const todoList = useStore('todolist') as ITodoList;
+  const todoList = useStore('todolist') as any;
   const [newTodo, setNewTodo] = React.useState('');
 
   React.useEffect(() => {
     dispatch({
-      type: 'TODOLIST_FETCH'
+      type: 'TODOLIST_INIT',
+      payload: [
+        {
+          id: 1,
+          text: '有是美好的一天',
+          createTime: 1564392621791
+        },
+        {
+          id: 2,
+          text: '吃早饭',
+          createTime: 1561219200000
+        }
+      ]
     });
 
     return () => {
@@ -22,15 +33,12 @@ const List = () => {
     };
   }, []);
 
-  const handleDelete = React.useCallback(
-    (todo: ITodo) => () => {
-      dispatch({
-        type: 'TODOLIST_DELETE',
-        payload: todo
-      });
-    },
-    []
-  );
+  const handleDelete = (todo: any) => () => {
+    dispatch({
+      type: 'TODOLIST_DELETE',
+      payload: todo
+    });
+  };
 
   const handleEdit = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewTodo(e.target.value);
@@ -65,7 +73,7 @@ const List = () => {
         </button>
       </li>
       {!todoList.data.length && <li className="list-empty">没有数据</li>}
-      {todoList.data.map((todo: ITodo) => (
+      {todoList.data.map((todo: any) => (
         <li className="list-item" key={todo.id}>
           {todo.text}
           <button

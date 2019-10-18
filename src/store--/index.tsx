@@ -38,10 +38,8 @@ const Provider = (props: IProps) => {
  *   payload
  * });
  */
-export const useDispatch = () => React.useContext(dispatchCtx);
-export const useStore = (nameSpace?: keyof IState) => {
+const useDispatch = () => React.useContext(dispatchCtx);
+const useStore = (nameSpace?: keyof IState) => {
   const store = React.useContext(storeCxt);
   return nameSpace ? store[nameSpace] : store;
 };
-
-export default Provider;

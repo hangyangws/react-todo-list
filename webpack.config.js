@@ -48,7 +48,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'public/index.html'),
-      title: 'excel uploader',
+      title: 'todo list',
       filename: 'index.html',
       favicon: path.join(__dirname, 'public/favicon.ico')
     }),

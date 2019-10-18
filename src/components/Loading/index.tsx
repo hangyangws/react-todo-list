@@ -1,12 +1,10 @@
 import React from 'react';
-import { useStore } from '@store/index';
-
-import { INotice } from '@store/types';
 
 import './index.scss';
+import { useStore } from '../../hooks-store';
 
 const Loading = () => {
-  const { loading } = useStore('notice') as INotice;
+  const { loading } = useStore('notice') as any;
 
   return loading ? (
     <div className="loading">
