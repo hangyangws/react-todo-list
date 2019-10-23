@@ -1,8 +1,20 @@
 import request from '@utils/request';
+import get from 'lodash/get';
 
-const apiFetch = async ({ next, action }: any) => {
-  if (action.api && action.api.url) {
-    const { method = 'get' } = action.api;
+import { IMiddleware } from 'src/hooks-store/types';
+import { IAction } from './list/types';
+import { IApi } from './list/todolist.types';
+
+interface ApiType {
+  api: IApi
+}
+
+const apiFetch: IMiddleware<IAction> = async ({ next, action }) => {
+  const api: IApi = get(action, 'api', {})
+  const payload = get(action, 'payload')
+
+  if (api.url) {
+    const { method = 'get' } = api;
 
     next({ type: 'LOADING_START' });
     const serverResponse = await (request as any)[method](`/todolist`);
@@ -10,10 +22,10 @@ const apiFetch = async ({ next, action }: any) => {
 
     const nextAction = {
       ...action,
-      payload: action.payload || serverResponse.data
+      payload: payload || serverResponse.data
     };
 
-    delete nextAction.api;
+    delete (nextAction as ApiType).api;
 
     next(nextAction);
   } else {
@@ -21,6 +33,6 @@ const apiFetch = async ({ next, action }: any) => {
   }
 };
 
-const middlewaras: any = [apiFetch];
+const middlewaras = [apiFetch];
 
 export default middlewaras;

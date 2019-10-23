@@ -6,16 +6,20 @@ import { applyMiddleware } from './middleware';
 
 let initialState: IStoreData;
 let storeCxt: React.Context<IStoreData>;
-let dispatchCtx: React.Context<any>;
+let dispatchCtx: React.Context<React.Dispatch<any>>;
 
-const Provider = (props: IProviderProps) => {
+const Provider = <State, Action>(props: IProviderProps<State, Action>) => {
   initialState = React.useMemo(() => getInitialState(props.stores), [
     props.stores
   ]);
-  storeCxt = React.useMemo(() => React.createContext(initialState), [
-    initialState
-  ]);
-  dispatchCtx = React.useMemo(() => React.createContext(() => 0), []);
+  storeCxt = React.useMemo(
+    () => React.createContext<IStoreData>(initialState),
+    [initialState]
+  );
+  dispatchCtx = React.useMemo(
+    () => React.createContext<React.Dispatch<any>>(() => 0),
+    []
+  );
 
   const combinedReducer = React.useMemo(
     () => getComdbinedReducer(props.stores),
@@ -27,7 +31,7 @@ const Provider = (props: IProviderProps) => {
   // 让 dispatch 支持 middleware
   const enhancedDispatch =
     props.middlewares && props.middlewares.length
-      ? applyMiddleware(state, dispatch, props.middlewares)
+      ? applyMiddleware<Action>(state, dispatch, props.middlewares)
       : dispatch;
 
   return (

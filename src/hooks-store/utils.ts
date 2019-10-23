@@ -1,7 +1,9 @@
 import { IStoreData, IStore } from './types';
 
-export const getInitialState = (storeList: IStore[]): IStoreData =>
-  storeList.reduce(
+export const getInitialState = <State, Action>(
+  stores: IStore<State, Action>[]
+): IStoreData =>
+  stores.reduce(
     (pre, cur) => ({
       ...pre,
       [cur.name]: cur.initialState
@@ -9,10 +11,9 @@ export const getInitialState = (storeList: IStore[]): IStoreData =>
     {}
   );
 
-export const getComdbinedReducer = (stores: IStore[]) => (
-  state: any,
-  action: any
-) => {
+export const getComdbinedReducer = <State, Action>(
+  stores: IStore<State, Action>[]
+) => (state: IStoreData, action: Action): IStoreData => {
   let index = 0;
 
   while (index < stores.length) {
