@@ -1,7 +1,7 @@
 import React from 'react';
+import { useStore } from 'hooks-store';
 
 import './index.scss';
-import { useStore } from '../../hooks-store';
 
 const Loading = () => {
   const { loading } = useStore('notice') as any;

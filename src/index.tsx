@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Provider from 'hooks-store';
 
 import middlewaras from '@store/middlewares';
 import storeList from '@store/list';
-import Provider from './hooks-store';
 import App from './App';
 import { IAction, IState } from '@store/list/types';
 

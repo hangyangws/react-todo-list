@@ -1,6 +1,6 @@
 import React from 'react';
+import { useDispatch, useStore } from 'hooks-store';
 
-import { useDispatch, useStore } from '../../hooks-store';
 import { IAction } from '@store/list/types';
 
 import './index.scss';
