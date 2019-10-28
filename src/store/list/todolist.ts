@@ -1,13 +1,13 @@
 import { setIn } from 'immutable';
 
-import { IStore, IReducer } from 'src/hooks-store/types';
+import { Store, Reducer } from 'src/hooks-store/types';
 import { IState, IAction } from './types';
 
 const initialState: IState = {
   data: []
 };
 
-const reducer: IReducer<IState, IAction> = (state, action) => {
+const reducer: Reducer<IState, IAction> = (state, action) => {
   switch (action.type) {
     case 'TODOLIST_INIT':
       return setIn(state, ['data'], action.payload);
@@ -26,7 +26,7 @@ const reducer: IReducer<IState, IAction> = (state, action) => {
   }
 };
 
-const todolistStore: IStore<IState, IAction> = {
+const todolistStore: Store<IState, IAction> = {
   name: 'todolist',
   initialState,
   reducer

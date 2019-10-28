@@ -5,7 +5,7 @@ export interface ITodoItem {
 }
 
 export interface IApi {
-  method: string;
+  method?: string;
   url: string;
 }
 
@@ -14,7 +14,7 @@ export interface ITodolistState {
 }
 
 export type ITodolistAction =
-  | { type: 'TODOLIST_INIT'; payload: ITodoItem[]; api?: IApi }
+  | { type: 'TODOLIST_INIT'; payload?: ITodoItem[]; api?: IApi }
   | { type: 'TODOLIST_CLEAR' }
   | { type: 'TODOLIST_DELETE'; payload: ITodoItem; api?: IApi }
   | { type: 'TODOLIST_ADD'; payload: ITodoItem; api?: IApi };

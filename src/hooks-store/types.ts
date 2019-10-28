@@ -1,30 +1,34 @@
 import React from 'react';
 
-
-export interface IStoreData {
+export interface StoreData {
   [name: string]: any;
 }
 
-export type IMiddleware<Action> = ({
+export type DispatchCtxType<T> = React.Context<React.Dispatch<T>>;
+
+export type Middleware<Action> = ({
   next,
   action,
   state
 }: {
   next: React.Dispatch<Action>;
   action: Action;
-  state?: IStoreData;
+  state?: StoreData;
 }) => void;
 
-export type IReducer<State, Action> = (state: State, action: Action) => State | undefined;
+export type Reducer<State, Action> = (
+  state: State,
+  action: Action
+) => State | undefined;
 
-export interface IStore<State, Action> {
+export interface Store<State, Action> {
   name: string;
   initialState: State;
-  reducer: IReducer<State, Action>;
+  reducer: Reducer<State, Action>;
 }
 
-export interface IProviderProps<State, Action> {
-  stores: IStore<State, Action>[];
-  middlewares?: IMiddleware<Action>[];
+export interface ProviderProps<State, Action> {
+  stores: Store<State, Action>[];
+  middlewares?: Middleware<Action>[];
   children: JSX.Element[] | JSX.Element | React.ReactNode;
 }

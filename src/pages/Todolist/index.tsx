@@ -1,11 +1,12 @@
 import React from 'react';
 
 import { useDispatch, useStore } from '../../hooks-store';
+import { IAction } from '@store/list/types';
 
 import './index.scss';
 
 const List = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<IAction>();
   const todoList = useStore('todolist') as any;
   const [newTodo, setNewTodo] = React.useState('');
 

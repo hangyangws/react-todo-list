@@ -1,17 +1,17 @@
 import request from '@utils/request';
 import get from 'lodash/get';
 
-import { IMiddleware } from 'src/hooks-store/types';
+import { Middleware } from 'src/hooks-store/types';
 import { IAction } from './list/types';
 import { IApi } from './list/todolist.types';
 
 interface ApiType {
-  api: IApi
+  api: IApi;
 }
 
-const apiFetch: IMiddleware<IAction> = async ({ next, action }) => {
-  const api: IApi = get(action, 'api', {})
-  const payload = get(action, 'payload')
+const apiFetch: Middleware<IAction> = async ({ next, action }) => {
+  const api: IApi = get(action, 'api', {});
+  const payload = get(action, 'payload');
 
   if (api.url) {
     const { method = 'get' } = api;

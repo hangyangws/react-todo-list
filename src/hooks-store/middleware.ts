@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { IStoreData, IMiddleware } from './types';
+import { StoreData, Middleware } from './types';
 
 export const applyMiddleware = <Action>(
-  state: IStoreData,
+  state: StoreData,
   dispatch: React.Dispatch<Action>,
-  middlewares: IMiddleware<Action>[]
+  middlewares: Middleware<Action>[]
 ) => (action: Action) => {
   middlewares.forEach(middleware => {
     middleware({ next: dispatch, action, state });
