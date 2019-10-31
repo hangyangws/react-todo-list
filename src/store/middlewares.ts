@@ -17,7 +17,7 @@ const apiFetch: Middleware<IAction> = async ({ next, action }) => {
     const { method = 'get' } = api;
 
     next({ type: 'LOADING_START' });
-    const serverResponse = await (request as any)[method](`/todolist`);
+    const serverResponse = await (request as any)[method](api.url);
     next({ type: 'LOADING_STOP' });
 
     const nextAction = {
