@@ -1,13 +1,17 @@
 import React from 'react';
 import { useDispatch, useStore } from 'hooks-store';
 
-import { IAction } from '@store/list/types';
+import {
+  ITodolistAction,
+  ITodolistState,
+  ITodoItem
+} from '@store/list/index.types';
 
 import './index.scss';
 
 const List = () => {
-  const dispatch = useDispatch<IAction>();
-  const todoList = useStore('todolist') as any;
+  const dispatch = useDispatch<ITodolistAction>();
+  const todoList = useStore<ITodolistState>('todolist');
   const [newTodo, setNewTodo] = React.useState('');
 
   React.useEffect(() => {
@@ -25,7 +29,7 @@ const List = () => {
     };
   }, []);
 
-  const handleDelete = (todo: any) => () => {
+  const handleDelete = (todo: ITodoItem) => () => {
     dispatch({
       type: 'TODOLIST_DELETE',
       api: {
@@ -73,7 +77,7 @@ const List = () => {
         </button>
       </li>
       {!todoList.data.length && <li className="list-empty">没有数据</li>}
-      {todoList.data.map((todo: any) => (
+      {todoList.data.map(todo => (
         <li className="list-item" key={todo.id}>
           {todo.text}
           <button

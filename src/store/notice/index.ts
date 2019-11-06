@@ -1,13 +1,13 @@
 import { setIn } from 'immutable';
 import { Reducer, Store } from 'hooks-store/lib/types';
 
-import { IState, IAction } from '@store/types';
+import { INoticeState, INoticeAction } from './index.types';
 
-const initialState: IState = {
+const initialState: INoticeState = {
   loading: false
 };
 
-const reducer: Reducer<IState, IAction> = (state, action) => {
+const reducer: Reducer<INoticeState, INoticeAction> = (state, action) => {
   switch (action.type) {
     case 'LOADING_START':
       return setIn(state, ['loading'], true);
@@ -16,7 +16,7 @@ const reducer: Reducer<IState, IAction> = (state, action) => {
   }
 };
 
-const noticeStore: Store<IState, IAction> = {
+const noticeStore: Store<INoticeState, INoticeAction> = {
   name: 'notice',
   initialState,
   reducer
