@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import Provider from 'hooks-store';
 
 import middlewaras from '@store/middlewares';
-import storeList from '@store/list';
 import App from './App';
-import { IAction, IState } from '@store/list/types';
+import { IState, IAction } from '@store/types';
+import storeList from './store';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';

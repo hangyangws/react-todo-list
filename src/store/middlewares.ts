@@ -2,8 +2,8 @@ import request from '@utils/request';
 import get from 'lodash/get';
 import { Middleware } from 'hooks-store/lib/types';
 
-import { IAction } from './list/types';
-import { IApi } from './list/todolist.types';
+import { IAction } from './types';
+import { IApi } from './list/index.types';
 
 interface ApiType {
   api: IApi;

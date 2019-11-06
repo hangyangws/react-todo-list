@@ -1,7 +1,7 @@
 import { setIn } from 'immutable';
-import { Reducer } from 'hooks-store/lib/types';
+import { Reducer, Store } from 'hooks-store/lib/types';
 
-import { IState, IAction } from './types';
+import { IState, IAction } from '@store/types';
 
 const initialState: IState = {
   loading: false
