@@ -41,7 +41,7 @@
     "classnames": "^2.2.5",
     "core-js": "^3.1.4",
     "history": "^4.7.2",
-    "hooks-store": "^1.0.0",
+    "hooks-store": "^1.1.0",
     "immutable": "^4.0.0-rc.12",
     "lodash": "^4.17.15",
     "query-string": "^6.4.2",
