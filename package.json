@@ -43,7 +43,7 @@
     "history": "^4.7.2",
     "hooks-store": "^1.1.0",
     "immutable": "^4.0.0-rc.12",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "query-string": "^6.4.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
